@@ -18,6 +18,12 @@ its nodes again, using a different grammar.
 
 The only dependency to the following script is [Arpeggio](https://pypi.org/project/Arpeggio/).
 
+Since we need to use Python syntax, some particular notation in the grammar rules might be non-trivial:
+    - `[A, B, C]` means `A | B | C` (either A or B or C)
+    - `_()` is a nickname for `RegExMatch`
+    - `return A, B, C` gets translated to `return (A, B, C)`, which means concatenation of tokens: `A B C`
+    - Some keywords are function names, others are function calls. For example, `addr_spec` is always used as a function, whereas `addr` is a function, that has the purpose of a macro. `addr` itself is not a grammar rule, but a helper to construct rules.
+
 Below is the grammar for output descriptors, including inner grammars, in Arpeggio (Python):
 ```py
 from arpeggio import Optional, OneOrMore, EOF, ZeroOrMore
