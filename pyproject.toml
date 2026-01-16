@@ -1,7 +1,7 @@
 [project]
-name = "test-arpeggio"
+name = "bitcoin-descriptor-specification"
 version = "0.1.0"
-description = "Add your description here"
+description = "Bitcoin Descriptor Specification"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
