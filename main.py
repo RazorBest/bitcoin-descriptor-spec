@@ -298,7 +298,7 @@ CURVE_B = 7
 GENERATOR_ORDER = 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141
 
 def is_curve_point(x: int, y: int):
-    return (y**2) % FIELD_ORDER == (x**3 + CURVE_A*x + CURVE_B)
+    return (y**2) % FIELD_ORDER == (x**3 + CURVE_A*x + CURVE_B) % FIELD_ORDER
 
 def is_field_element(x: int):
     return 0 <= x < FIELD_ORDER
