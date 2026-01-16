@@ -3,7 +3,7 @@
 ## About this project
 
 Bitcoin Core supports a human-readable specification of wallets, called
-"Output Descriptors". (The documentation)[https://github.com/bitcoin/bitcoin/blob/master/doc/descriptors.md] is thorough,
+"Output Descriptors". [The documentation](https://github.com/bitcoin/bitcoin/blob/master/doc/descriptors.md) is thorough,
 but pretty chaotic and has a lot of missing context.
 
 This project's purpose is to re-document the output descriptors and create a
@@ -11,12 +11,12 @@ self-contained documentation.
 
 ## Grammar with Arpeggio
 
-(Arpeggio)[https://pypi.org/project/Arpeggio/] is a Python parser based on PEG grammars. One issue with output
+[Arpeggio](https://pypi.org/project/Arpeggio/) is a Python parser based on PEG grammars. One issue with output
 descriptors is that they might contain an encoding of an inner grammar. Arpeggio
 solves this problem with tree visitors. Once you parse a string, you can parse
 its nodes again, using a different grammar.
 
-The only dependency to the following script is (Arpeggio)[https://pypi.org/project/Arpeggio/].
+The only dependency to the following script is [Arpeggio](https://pypi.org/project/Arpeggio/).
 
 Below is the grammar for output descriptors, including inner grammars, in Arpeggio (Python):
 ```py
