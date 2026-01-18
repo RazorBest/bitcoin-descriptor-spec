@@ -102,14 +102,18 @@ def key(): return Optional(key_origin), [key_public_hex, key_extended, key_priva
 def key_sequence_xonly():
     return [key, key_public_hex_xonly], ZeroOrMore(',', [key, key_public_hex_xonly])
 
-def multi_key_tr():
-   return [
-        multi_a(n_keys, ',', key_sequence_xonly),
-        sortedmulti_a(n_keys, ',', key_sequence_xonly),
-    ]
+def multi_key_spec_xonly():
+    return n_keys, ',', key_sequence_xonly
 
 def tree():
-    return [[pk([key, key_public_hex_xonly]), multi_key_tr], ('{', tree, ',', tree, '}')]
+    return [
+        [
+            pk([key, key_public_hex_xonly]),
+            multi_a(multi_key_spec),
+            sortedmulti_a(multi_key_spec_xonly)
+        ],
+        ('{', tree, ',', tree, '}'),
+    ]
 
 def taproot_script(): return tr([key, key_public_hex_xonly], Optional(',', tree))
 
