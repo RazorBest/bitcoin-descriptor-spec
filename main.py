@@ -118,8 +118,6 @@ def taproot_script(): return tr([key, key_public_hex_xonly], Optional(',', tree)
 
 # -------------------- START RULES FOR SCRIPT ---------------------------------
 
-def script_key(): return [pk(key), pkh(key)]
-
 def key_sequence(): return key, ZeroOrMore(',', key)
 
 def multi_key():
@@ -128,11 +126,14 @@ def multi_key():
         sortedmulti(n_keys, ',', key_sequence),
     ]
 
-def subscript(): return [script_key, multi_key]
+def subscript(): return [pk(key), pkh(key), multi_key]
 
 def topscript():
     return [
-        sh(subscript), sh(wsh(subscript)), sh(wpkh(key_no_uncompressed)), wsh(subscript),
+        sh(pk(key)), sh(pkh(key)), sh(multi_key),
+        sh(wsh(pk(key))), sh(wsh(pkh(key))), sh(wsh(multi_key)),
+        sh(wpkh(key_no_uncompressed)),
+        wsh(pk(key)), wsh(pkh(key)), wsh(multi_key),
         wpkh(key_no_uncompressed), combo(key), addr(addr_spec), raw(hex_str), rawtr(key),
     ]
 
@@ -349,5 +350,3 @@ def b58decode_check(v: str) -> bytes:
 
 if __name__ == "__main__":
     main()
-
-
