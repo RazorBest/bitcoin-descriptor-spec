@@ -12,7 +12,7 @@ wheels = [
 ]
 
 [[package]]
-name = "test-arpeggio"
+name = "bitcoin-descriptor-specification"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
